@@ -1,5 +1,6 @@
-export const reverseString = (word) => {
 
-  return word.split('').reverse().join('');
-  
+export const reverseString = (str) => {
+
+  return Array.from(str).reverse().join('');
+
 };
