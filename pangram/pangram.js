@@ -1,9 +1,13 @@
 
-export const isPangram = (str) => {
 
-  const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  const lowerCase = str.toLowerCase();
+export const isPangram = (text) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-  return LETTERS.every((letter) => lowerCase.includes(letter));
+  for (const letter of alphabet) {
+    if (text.toLowerCase().search(letter) == -1) {
+      return false;
+    }
+  }
 
+  return true;
 };
