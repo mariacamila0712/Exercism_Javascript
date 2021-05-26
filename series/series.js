@@ -1,26 +1,24 @@
 
 export class Series {
-  constructor(digits) {
-    this._digits = digits.split('').map(d => parseInt(d))
-  }
-
-  get digits() {
-    return this._digits
-  }
-
-  set digits(digits) {
-    this._digits = digits
-  }
-
-  slices(num) {
-    let slicesList = []
-    if (num > this._digits.length) {
-      throw new Error('Slice size is too big.');
+  constructor(series) {
+    if (series.length == 0) {
+      throw new Error('series cannot be empty');
     }
-    this._digits.forEach((n, i) => {
-      if (i + num > this._digits.length) { return }
-      slicesList.push(this._digits.slice(i, i + num))
-    })
-    return slicesList
+    this.series = series.split("").map(x=>+x);
+  }
+
+  slices(sliceLength) {
+    let result = [];
+    if (this.series.length < sliceLength) {
+      throw new Error('slice length cannot be greater than series length');
+    } else if (sliceLength == 0) {
+      throw new Error('slice length cannot be zero');
+    } else if (sliceLength < 0) {
+      throw new Error('slice length cannot be negative');
+    }
+    for (let i = 0; i < this.series.length - sliceLength + 1; i++) {
+      result.push(this.series.slice(i, i + sliceLength));
+    }
+    return result;
   }
 }
