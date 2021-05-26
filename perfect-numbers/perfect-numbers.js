@@ -1,19 +1,16 @@
 
-
-export const classify = (numbers) => {
-  
-  if(numbers < 1){
+export const classify = (number) => {
+  if (number <= 0) {
     throw new Error('Classification is only possible for natural numbers.');
   }
 
-  let sum = 0;
-
-  for(let m = 0; m < numbers; m++) {
-    if(numbers % m === 0 ) sum += m;
+  let sum = [];
+  for (let divider = 1; divider < number; divider += 1) {
+    if (number % divider === 0) sum.push(divider);
   }
+  let result = sum.reduce((total, divider) => (total += divider), 0);
 
-  if (sum === numbers) return 'perfect';
-  if (sum < numbers) return 'deficient';
-  if (sum > numbers) return 'abundant';
-
+  if (result > number) return 'abundant';
+  else if (result === number) return 'perfect';
+  else if (result < number) return 'deficient';
 };
